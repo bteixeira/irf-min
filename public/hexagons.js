@@ -2,7 +2,9 @@ var Camera, Map, Scene, SceneHexagon, Sprite, Ufo, _ref,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-_ref = require('irf'), Scene = _ref.Scene, Camera = _ref.Camera, Sprite = _ref.Sprite, Map = _ref.Map;
+_ref = //require('irf'),
+    irf,
+    Scene = _ref.Scene, Camera = _ref.Camera, Sprite = _ref.Sprite, Map = _ref.Map;
 
 //Ufo = require('../actors/ufo.coffee');
 
@@ -19,7 +21,7 @@ SceneHexagon = (function(_super) {
         });
 //        this.ufo = new Ufo(this.parent.keyboard);
         hexagon = new Sprite({
-            "texture": "images/hexagon.png",
+            "texture": "hexagon.png",
             "width": 100,
             "height": 100,
             "innerWidth": 53,
@@ -57,7 +59,7 @@ SceneHexagon = (function(_super) {
 
     SceneHexagon.prototype.update = function(delta) {
 //        this.ufo.update(delta, this.background);
-        return this.camera.coor = this.ufo.coor;
+//        return this.camera.coor = this.ufo.coor;
     };
 
     SceneHexagon.prototype.render = function(ctx) {
@@ -73,4 +75,4 @@ SceneHexagon = (function(_super) {
 
 })(Scene);
 
-module.exports = SceneHexagon;
+//module.exports = SceneHexagon;

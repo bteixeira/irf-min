@@ -23,7 +23,7 @@ window.onload = function () {
 //    jQuery = require('jquery');
 
 //    _ref = require('irf'),
-        _ref = irf,
+    _ref = irf,
         EventManager = _ref.EventManager, Keyboard = _ref.Keyboard, SceneManager =
         _ref.SceneManager, Game = _ref.Game;
 
@@ -53,15 +53,17 @@ window.onload = function () {
 
     })(Game);
 
+        Asteroids.addScene(SceneHexagon);
+
 //    jQuery(function () {
-        var asteroids;
-        asteroids = new Asteroids({
-            "width": 800,
-            "height": 600
-        });
-        return asteroids.eventManager.on("map.finishedLoading", function () {
-            return asteroids.start();
-        });
+    var asteroids;
+    asteroids = new Asteroids({
+        "width": 800,
+        "height": 600
+    });
+    return asteroids.eventManager.on("map.finishedLoading", function () {
+        return asteroids.start();
+    });
 //    });
 
 //    Asteroids.addScene(require('./scenes/bigbackground.coffee'));
@@ -75,5 +77,6 @@ window.onload = function () {
 //    Asteroids.addScene(require('./scenes/maze.coffee'));
 //
 //    Asteroids.addScene(require('./scenes/hexagon.coffee'));
+    Asteroids.addScene(SceneHexagon);
 
 };
