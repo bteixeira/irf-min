@@ -49,10 +49,7 @@ window.onload = function () {
         }
 
         /* You need one of these two */
-//        __extends(SceneHexagon, irf.Scene);
-        SceneHexagon.prototype.update = function(delta) {
-//            console.log('updating');
-        };
+        SceneHexagon.prototype.update = function(delta) {};
 
         SceneHexagon.prototype.render = function (ctx) {
             var me = this;
@@ -65,24 +62,19 @@ window.onload = function () {
 
     })();
 
-    var __extends = function (child, parent) {
-        for (var key in parent) {
-            if (parent.hasOwnProperty(key)) {
-                child[key] = parent[key];
+    var Asteroids = (function () {
+
+        for (var key in irf.Game) {
+            if (irf.Game.hasOwnProperty(key)) {
+                Asteroids[key] = irf.Game[key];
             }
         }
         function ctor() {
-            this.constructor = child;
+            this.constructor = Asteroids;
         }
-
-        ctor.prototype = parent.prototype;
-        child.prototype = new ctor();
-        child.__super__ = parent.prototype;
-        return child;
-    };
-
-    var Asteroids = (function () {
-        __extends(Asteroids, irf.Game);
+        ctor.prototype = irf.Game.prototype;
+        Asteroids.prototype = new ctor();
+        Asteroids.__super__ = irf.Game.prototype;
 
         function Asteroids(params) {
             Asteroids.__super__.constructor.call(this, params);
