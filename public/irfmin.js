@@ -1,45 +1,28 @@
 window.onload = function () {
 
-    var
-        __extends = function (child, parent) {
-            for (var key in parent) {
-                if (parent.hasOwnProperty(key)) {
-                    child[key] = parent[key];
-                }
-            }
-            function ctor() {
-                this.constructor = child;
-            }
+    var hexagon = new irf.Sprite({
+        "texture": "hexagon.png",
+        "width": 100,
+        "height": 100,
+        "innerWidth": 53,
+        "innerHeight": 45,
+        "key": {
+            A: 0,
+            B: 1,
+            C: 2
+        }
+    });
 
-            ctor.prototype = parent.prototype;
-            child.prototype = new ctor();
-            child.__super__ = parent.prototype;
-            return child;
-        };
-
-    var SceneHexagon = (function(_super) {
-        __extends(SceneHexagon, _super);
+    var SceneHexagon = (function() {
 
         function SceneHexagon(parent) {
-            var hexagon;
             this.parent = parent;
             this.camera = new irf.Camera({
                 projection: "normal",
                 vpWidth: this.parent.params.width,
                 vpHeight: this.parent.params.height
             });
-            hexagon = new irf.Sprite({
-                "texture": "hexagon.png",
-                "width": 100,
-                "height": 100,
-                "innerWidth": 53,
-                "innerHeight": 45,
-                "key": {
-                    A: 0,
-                    B: 1,
-                    C: 2
-                }
-            });
+
             this.background = new irf.Map({
                 mapFile: {
                     width: 12,
@@ -65,28 +48,45 @@ window.onload = function () {
             });
         }
 
+        /* You need one of these two */
+//        __extends(SceneHexagon, irf.Scene);
         SceneHexagon.prototype.update = function(delta) {
+//            console.log('updating');
         };
 
-        SceneHexagon.prototype.render = function(ctx) {
-            return this.camera.apply(ctx, (function(_this) {
-                return function() {
-                    _this.background.render(ctx, _this.camera);
-                };
-            })(this));
+        SceneHexagon.prototype.render = function (ctx) {
+            var me = this;
+            this.camera.apply(ctx, function () {
+                me.background.render(ctx, me.camera);
+            });
         };
 
         return SceneHexagon;
 
-    })(irf.Scene);
+    })();
 
-    var Asteroids = (function (_super) {
-        __extends(Asteroids, _super);
+    var __extends = function (child, parent) {
+        for (var key in parent) {
+            if (parent.hasOwnProperty(key)) {
+                child[key] = parent[key];
+            }
+        }
+        function ctor() {
+            this.constructor = child;
+        }
+
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+    };
+
+    var Asteroids = (function () {
+        __extends(Asteroids, irf.Game);
 
         function Asteroids(params) {
             Asteroids.__super__.constructor.call(this, params);
             this.eventManager = new irf.EventManager;
-//            this.keyboard = new Keyboard;
             this.sceneManager.setScene("SceneHexagon", this);
         }
 
@@ -104,7 +104,7 @@ window.onload = function () {
 
         return Asteroids;
 
-    })(irf.Game);
+    })();
 
     Asteroids.addScene(SceneHexagon);
 
@@ -112,8 +112,9 @@ window.onload = function () {
         "width": 800,
         "height": 600
     });
+
     asteroids.eventManager.on("map.finishedLoading", function () {
-        return asteroids.start();
+        asteroids.start();
     });
 
 };
