@@ -1,10 +1,9 @@
 window.onload = function () {
 
-    var Camera, Map, Scene, SceneHexagon, Sprite,
-        __hasProp = {}.hasOwnProperty,
+    var
         __extends = function (child, parent) {
             for (var key in parent) {
-                if (__hasProp.call(parent, key)) {
+                if (parent.hasOwnProperty(key)) {
                     child[key] = parent[key];
                 }
             }
@@ -18,13 +17,12 @@ window.onload = function () {
             return child;
         };
 
-        Scene = irf.Scene;
-        Camera = irf.Camera;
-        Sprite = irf.Sprite;
-        Map = irf.Map;
+    var Scene = irf.Scene;
+    var Camera = irf.Camera;
+    var Sprite = irf.Sprite;
+    var Map = irf.Map;
 
-
-    SceneHexagon = (function(_super) {
+    var SceneHexagon = (function(_super) {
         __extends(SceneHexagon, _super);
 
         function SceneHexagon(parent) {
@@ -87,36 +85,19 @@ window.onload = function () {
 
     })(Scene);
 
-    var Asteroids, EventManager, Game, Keyboard, SceneManager,
-        _ref,
-        __hasProp = {}.hasOwnProperty,
-        __extends = function (child, parent) {
-            for (var key in parent) {
-                if (__hasProp.call(parent, key)) {
-                    child[key] = parent[key];
-                }
-            }
-            function ctor() {
-                this.constructor = child;
-            }
 
-            ctor.prototype = parent.prototype;
-            child.prototype = new ctor();
-            child.__super__ = parent.prototype;
-            return child;
-        };
+    var EventManager = irf.EventManager;
+//    var Keyboard = irf.Keyboard;
+//    var SceneManager = irf.SceneManager;
+    var Game = irf.Game;
 
-    _ref = irf,
-        EventManager = _ref.EventManager, Keyboard = _ref.Keyboard, SceneManager =
-        _ref.SceneManager, Game = _ref.Game;
-
-    Asteroids = (function (_super) {
+    var Asteroids = (function (_super) {
         __extends(Asteroids, _super);
 
         function Asteroids(params) {
             Asteroids.__super__.constructor.call(this, params);
             this.eventManager = new EventManager;
-            this.keyboard = new Keyboard;
+//            this.keyboard = new Keyboard;
             this.sceneManager.setScene("SceneHexagon", this);
         }
 
@@ -138,12 +119,11 @@ window.onload = function () {
 
     Asteroids.addScene(SceneHexagon);
 
-    var asteroids;
-    asteroids = new Asteroids({
+    var asteroids = new Asteroids({
         "width": 800,
         "height": 600
     });
-    return asteroids.eventManager.on("map.finishedLoading", function () {
+    asteroids.eventManager.on("map.finishedLoading", function () {
         return asteroids.start();
     });
 
