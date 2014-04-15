@@ -62,18 +62,18 @@ window.onload = function () {
 
     var Asteroids = (function () {
 
+        function Asteroids(params) {
+            irf.Game.prototype.constructor.call(this, params);
+            this.eventManager = new irf.EventManager;
+            this.sceneManager.setScene("SceneHexagon", this);
+        }
+
         Asteroids.addScene = irf.Game.addScene;
         function ctor() {
             this.constructor = Asteroids;
         }
         ctor.prototype = irf.Game.prototype;
         Asteroids.prototype = new ctor();
-
-        function Asteroids(params) {
-            irf.Game.prototype.constructor.call(this, params);
-            this.eventManager = new irf.EventManager;
-            this.sceneManager.setScene("SceneHexagon", this);
-        }
 
         Asteroids.prototype.update = function (delta) {
             irf.Game.prototype.update.call(this, delta);
