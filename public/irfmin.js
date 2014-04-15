@@ -70,22 +70,21 @@ window.onload = function () {
         }
         ctor.prototype = irf.Game.prototype;
         Asteroids.prototype = new ctor();
-        Asteroids.__super__ = irf.Game.prototype;
 
         function Asteroids(params) {
-            Asteroids.__super__.constructor.call(this, params);
+            irf.Game.prototype.constructor.call(this, params);
             this.eventManager = new irf.EventManager;
             this.sceneManager.setScene("SceneHexagon", this);
         }
 
         Asteroids.prototype.update = function (delta) {
-            Asteroids.__super__.update.call(this, delta);
+            irf.Game.prototype.update.call(this, delta);
             this.fps = (1000 / delta).toFixed(1);
             return this.sceneManager.currentScene.update(delta);
         };
 
         Asteroids.prototype.render = function () {
-            Asteroids.__super__.render.call(this);
+            irf.Game.prototype.render.call(this);
             this.sceneManager.currentScene.render(this.ctx);
             return this.ctx.fillText(this.fps, this.params.width - 50, 20);
         };
