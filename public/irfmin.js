@@ -17,23 +17,18 @@ window.onload = function () {
             return child;
         };
 
-    var Scene = irf.Scene;
-    var Camera = irf.Camera;
-    var Sprite = irf.Sprite;
-    var Map = irf.Map;
-
     var SceneHexagon = (function(_super) {
         __extends(SceneHexagon, _super);
 
         function SceneHexagon(parent) {
             var hexagon;
             this.parent = parent;
-            this.camera = new Camera({
+            this.camera = new irf.Camera({
                 projection: "normal",
                 vpWidth: this.parent.params.width,
                 vpHeight: this.parent.params.height
             });
-            hexagon = new Sprite({
+            hexagon = new irf.Sprite({
                 "texture": "hexagon.png",
                 "width": 100,
                 "height": 100,
@@ -45,7 +40,7 @@ window.onload = function () {
                     C: 2
                 }
             });
-            this.background = new Map({
+            this.background = new irf.Map({
                 mapFile: {
                     width: 12,
                     height: 12,
@@ -83,20 +78,14 @@ window.onload = function () {
 
         return SceneHexagon;
 
-    })(Scene);
-
-
-    var EventManager = irf.EventManager;
-//    var Keyboard = irf.Keyboard;
-//    var SceneManager = irf.SceneManager;
-    var Game = irf.Game;
+    })(irf.Scene);
 
     var Asteroids = (function (_super) {
         __extends(Asteroids, _super);
 
         function Asteroids(params) {
             Asteroids.__super__.constructor.call(this, params);
-            this.eventManager = new EventManager;
+            this.eventManager = new irf.EventManager;
 //            this.keyboard = new Keyboard;
             this.sceneManager.setScene("SceneHexagon", this);
         }
@@ -115,7 +104,7 @@ window.onload = function () {
 
         return Asteroids;
 
-    })(Game);
+    })(irf.Game);
 
     Asteroids.addScene(SceneHexagon);
 
