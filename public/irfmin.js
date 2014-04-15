@@ -64,11 +64,7 @@ window.onload = function () {
 
     var Asteroids = (function () {
 
-        for (var key in irf.Game) {
-            if (irf.Game.hasOwnProperty(key)) {
-                Asteroids[key] = irf.Game[key];
-            }
-        }
+        Asteroids.addScene = irf.Game.addScene;
         function ctor() {
             this.constructor = Asteroids;
         }
