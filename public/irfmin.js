@@ -16,11 +16,10 @@ window.onload = function () {
     var SceneHexagon = (function() {
 
         function SceneHexagon(parent) {
-            this.parent = parent;
             this.camera = new irf.Camera({
                 projection: "normal",
-                vpWidth: this.parent.params.width,
-                vpHeight: this.parent.params.height
+                vpWidth: parent.params.width,
+                vpHeight: parent.params.height
             });
 
             this.background = new irf.Map({
@@ -44,11 +43,10 @@ window.onload = function () {
                 pattern: "simple",
                 tilePlacement: "hexagon",
                 sprite: hexagon,
-                ed: this.parent.eventManager
+                ed: parent.eventManager
             });
         }
 
-        /* You need one of these two */
         SceneHexagon.prototype.update = function(delta) {};
 
         SceneHexagon.prototype.render = function (ctx) {
